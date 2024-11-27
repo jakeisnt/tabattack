@@ -60,6 +60,21 @@ body {
   box-shadow: 0 4px 20px var(--shadow);
 }
 
+/* Remove site-wrapper styling on mobile */
+@media (max-width: 768px) {
+  body {
+    padding: 0;
+  }
+
+  .site-wrapper {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    width: 100dvw;
+    height: 100dvh;
+  }
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -414,6 +429,41 @@ h2 {
   overflow: auto;
 }
 
+/* Add mobile adjustments */
+@media (max-width: 768px) {
+  .browser-content {
+    max-height: none; /* Remove max height */
+    height: calc(
+      100vh - 300px
+    ); /* Subtract page header, browser header, and tabs height */
+    overflow: hidden; /* Prevent outer scrolling */
+  }
+
+  /* Allow individual tab content areas to scroll instead */
+  .gmail-content-area,
+  .gdocs-content-area,
+  .github-main,
+  .reddit-main {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Hide Google Docs tab on mobile */
+  .tab[data-original="Google Docs"] {
+    display: none;
+  }
+
+  /* Make remaining tabs wider to fill space */
+  .tab {
+    width: 33.33%; /* Each tab takes equal width */
+    min-width: unset; /* Remove min-width constraint */
+  }
+
+  .browser-tabs {
+    gap: 0; /* Remove gap between tabs on mobile */
+  }
+}
+
 .demo-controls {
   text-align: center;
   padding: 20px;
@@ -491,24 +541,43 @@ h2 {
   }
 
   .browser-mock {
-    margin: 0 10px;
+    margin: 0;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  header .container {
+    padding: 0 20px;
+  }
+
+  .fine-print {
+    padding: 20px;
   }
 }
 
-@media (max-width: 600px) {
-  .install-step {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+@media (max-width: 480px) {
+  .browser-dots {
+    display: none;
   }
 
-  .step-icon {
-    margin-bottom: 10px;
+  .tab {
+    width: 140px;
   }
 }
 
 .demo {
   margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+  .demo {
+    margin-top: 0;
+  }
 }
 
 .fine-print {
@@ -589,6 +658,7 @@ h2 {
   background: #ffffff;
   border-bottom: 1px solid #dadce0;
   gap: 24px;
+  overflow: hidden;
 }
 
 .gmail-toolbar-section {
@@ -782,24 +852,30 @@ h2 {
   background: #0d1117;
   color: #c9d1d9;
   height: 100%;
+  display: flex;
   flex-direction: column;
 }
 
 .github-header {
-  padding: 16px;
+  padding: 16px 24px;
   border-bottom: 1px solid #30363d;
+}
+
+.github-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .github-main {
   flex: 1;
-  padding: 20px;
+  padding: 24px;
 }
 
 .github-repo-content {
   background: #161b22;
   border: 1px solid #30363d;
   border-radius: 6px;
-  padding: 20px;
 }
 
 .github-breadcrumb {
@@ -813,10 +889,72 @@ h2 {
   color: white;
   border: 1px solid rgba(240, 246, 252, 0.1);
   font-weight: 500;
+  height: 32px;
+  padding: 0 12px;
+  font-size: 14px;
 }
 
 .github-button:hover {
   background: #2ea043;
+}
+
+.repo-header {
+  padding: 16px;
+  border-bottom: 1px solid #30363d;
+}
+
+.branch-select {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 0;
+  flex-wrap: nowrap;
+}
+
+.branch-name {
+  color: #c9d1d9;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.commit-count {
+  color: #8b949e;
+  font-size: 12px;
+}
+
+.files-list {
+  padding: 8px 16px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-top: 1px solid #30363d;
+  color: #8b949e;
+  cursor: pointer;
+}
+
+.file-item:first-child {
+  border-top: none;
+}
+
+.file-item:hover {
+  background: #1c2129;
+}
+
+.file-icon {
+  color: #8b949e;
+}
+
+.file-name {
+  color: #58a6ff;
+  font-size: 14px;
+}
+
+.file-name:hover {
+  text-decoration: underline;
 }
 
 /* Google Docs styles */
@@ -927,6 +1065,13 @@ h2 {
   justify-content: center;
   overflow-y: auto;
   min-height: 100%;
+}
+
+@media (max-width: 768px) {
+  .gdocs-content-area {
+    padding: 16px;
+    overflow-y: hidden;
+  }
 }
 
 .gdocs-page {
@@ -1259,5 +1404,345 @@ h2 {
 @media (prefers-color-scheme: dark) {
   .browser-menu:hover {
     color: #e8eaed;
+  }
+}
+
+/* Update GitHub styles */
+.last-commit {
+  color: #8b949e;
+  font-size: 12px;
+  margin-left: 16px;
+}
+
+.commit-message {
+  color: #8b949e;
+}
+
+.commit-time {
+  color: #8b949e;
+  margin-left: 8px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-top: 1px solid #30363d;
+  color: #8b949e;
+  cursor: pointer;
+}
+
+.file-meta {
+  margin-left: auto;
+  font-size: 12px;
+  color: #8b949e;
+}
+
+.branch-select {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 0;
+  flex-wrap: nowrap;
+}
+
+/* Ensure file items wrap nicely on mobile */
+@media (max-width: 600px) {
+  .file-item {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .file-meta {
+    width: 100%;
+    margin-left: 24px; /* Align with file name */
+  }
+}
+
+/* Gmail mobile adjustments */
+@media (max-width: 768px) {
+  .gmail-main {
+    flex-direction: column; /* Stack sidebar and content */
+  }
+
+  .gmail-sidebar {
+    min-width: unset;
+    border-right: none;
+    border-bottom: 1px solid var(--chrome-border);
+    padding: 0;
+  }
+
+  .gmail-compose {
+    padding: 8px;
+  }
+
+  .gmail-nav {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0 8px 8px;
+    gap: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .gmail-sidebar-item {
+    padding: 6px 12px;
+    margin: 0;
+    border-radius: 16px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .gmail-content-area {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .gmail-toolbar {
+    padding: 8px;
+    gap: 12px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .gmail-toolbar-section {
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .gmail-email {
+    padding: 4px 8px;
+  }
+
+  .email-sender {
+    width: 80px; /* Reduced width on mobile */
+    flex-shrink: 0; /* Prevent shrinking */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .email-checkbox,
+  .email-star {
+    margin-right: 8px;
+    flex-shrink: 0; /* Prevent shrinking */
+  }
+
+  .email-time {
+    margin-left: 8px;
+    flex-shrink: 0; /* Prevent shrinking */
+  }
+
+  .email-content {
+    flex: 1;
+    min-width: 0; /* Allow content to shrink */
+  }
+
+  /* Hide email snippets on very small screens */
+  @media (max-width: 480px) {
+    .email-snippet {
+      display: none;
+    }
+  }
+}
+
+/* GitHub mobile adjustments */
+@media (max-width: 768px) {
+  .github-header {
+    padding: 12px 16px;
+  }
+
+  .github-main {
+    padding: 12px;
+  }
+
+  .github-repo-content {
+    border-radius: 0;
+  }
+
+  .repo-header {
+    padding: 12px;
+  }
+
+  .branch-select {
+    gap: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap; /* Prevent wrapping */
+  }
+
+  .branch-name {
+    flex-shrink: 0;
+  }
+
+  .commit-count {
+    flex-shrink: 0;
+  }
+
+  .last-commit {
+    margin-left: 8px;
+    width: auto; /* Remove full width */
+    margin-top: 0; /* Remove top margin */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1; /* Take remaining space */
+    min-width: 0; /* Allow text truncation */
+  }
+
+  .commit-message {
+    display: inline;
+    margin-right: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+  }
+
+  .commit-time {
+    color: #6e7681;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .repo-nav {
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .repo-nav-item {
+    white-space: nowrap;
+    font-size: 13px;
+  }
+
+  .files-list {
+    padding: 0 12px;
+  }
+
+  .file-item {
+    padding: 12px 8px;
+    gap: 8px;
+    flex-wrap: nowrap; /* Prevent wrapping */
+    align-items: center;
+  }
+
+  .file-name {
+    flex: 0 1 auto; /* Allow shrinking but not growing */
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .file-meta {
+    width: auto; /* Remove full width */
+    margin-left: auto; /* Push to the right */
+    margin-top: 0; /* Remove top margin */
+    white-space: nowrap;
+    font-size: 11px;
+  }
+
+  .commit-message {
+    display: inline; /* Keep on same line */
+    margin-right: 8px;
+    max-width: 100px; /* Limit width */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .commit-time {
+    color: #6e7681;
+    font-size: 11px;
+  }
+
+  /* Adjust icon size */
+  .file-icon {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Reddit mobile adjustments */
+@media (max-width: 768px) {
+  .reddit-header {
+    padding: 8px;
+  }
+
+  .reddit-nav {
+    gap: 16px;
+  }
+
+  .reddit-search {
+    max-width: none;
+  }
+
+  .reddit-search input {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  .reddit-main {
+    padding: 12px;
+  }
+
+  .reddit-post {
+    padding: 8px;
+    margin-bottom: 12px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .post-votes {
+    padding: 0 4px;
+  }
+
+  .post-content {
+    min-width: 0; /* Allow content to shrink */
+  }
+
+  .post-title {
+    font-size: 16px;
+    margin-bottom: 2px;
+  }
+
+  .post-subreddit {
+    font-size: 11px;
+    margin-bottom: 2px;
+  }
+
+  .post-meta {
+    font-size: 11px;
+  }
+
+  .reddit-controls {
+    margin-top: 12px;
+  }
+
+  /* Make the button more prominent */
+  .reddit-button {
+    height: 36px;
+    padding: 0 16px;
+    font-size: 14px;
+  }
+}
+
+/* Further adjustments for very small screens */
+@media (max-width: 480px) {
+  .reddit-nav {
+    gap: 12px;
+  }
+
+  .reddit-home,
+  .reddit-popular {
+    font-size: 13px;
+  }
+
+  .post-votes {
+    font-size: 11px;
   }
 }
