@@ -9,15 +9,11 @@
     "default_popup": "popup.html"
   },
   "background": {
-    "service_worker": "dist/extension/background.js",
+    "service_worker": "extension-dist/extension/background.js",
     "type": "module"
   },
   "icons": {
     "48": "icon48.png",
     "128": "icon128.png"
-  },
-  "web_accessible_resources": [{
-    "resources": ["importmap.json"],
-    "matches": ["<all_urls>"]
-  }]
+  }
 }
