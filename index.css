@@ -406,11 +406,13 @@ h2 {
 
 .browser-content {
   min-height: 400px;
+  max-height: 500px;
   padding: 0;
   background: var(--browser-content-bg);
   border-top: 1px solid var(--chrome-border);
   position: relative;
   z-index: 1;
+  overflow: auto;
 }
 
 .demo-controls {
@@ -560,13 +562,13 @@ h2 {
 
 /* Tab content styles */
 .tab-content {
-  display: none;
+  display: none !important;
   height: 100%;
   min-height: 400px;
 }
 
 .tab-content.active {
-  display: flex;
+  display: flex !important;
   flex-direction: column;
 }
 
@@ -781,7 +783,6 @@ h2 {
   background: #0d1117;
   color: #c9d1d9;
   height: 100%;
-  display: flex;
   flex-direction: column;
 }
 
@@ -823,7 +824,6 @@ h2 {
 .gdocs-content {
   background: #f9fbfd;
   height: 100%;
-  display: flex;
   flex-direction: column;
 }
 
@@ -921,15 +921,18 @@ h2 {
   padding: 40px;
   display: flex;
   justify-content: center;
+  overflow-y: auto;
+  min-height: 100%;
 }
 
 .gdocs-page {
   background: white;
   width: 100%;
   max-width: 850px;
-  min-height: 1100px;
+  min-height: 800px;
   padding: 60px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
 }
 
 .gdocs-button {
@@ -985,8 +988,10 @@ h2 {
   }
 
   .gdocs-page {
-    background: #202124;
+    background: #2d2d2d;
     border: 1px solid #3c4043;
+    color: #e8eaed;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 
   .gdocs-title input,
