@@ -31,9 +31,9 @@ export class TabAttacker {
 
   /**
    * Creates a new TabAttacker instance
-   * @param intervalTime - Milliseconds between attacks (default: 3000ms)
+   * @param intervalTime - Milliseconds between attacks (default: 1000ms)
    */
-  constructor(protected intervalTime: number = 3000) {}
+  constructor(protected intervalTime: number = 1000) {}
 
   /**
    * Starts the tab attack
