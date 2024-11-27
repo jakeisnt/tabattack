@@ -374,8 +374,8 @@ h2 {
 }
 
 .browser-content {
-  min-height: 300px;
-  padding: 20px;
+  min-height: 400px;
+  padding: 0;
   background: var(--browser-content-bg);
   border-top: 1px solid var(--chrome-border);
   position: relative;
@@ -525,4 +525,571 @@ h2 {
 .github-link:hover {
   opacity: 1;
   transform: rotate(90deg);
+}
+
+/* Tab content styles */
+.tab-content {
+  display: none;
+  height: 100%;
+  min-height: 400px;
+}
+
+.tab-content.active {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Gmail styles */
+.gmail-content {
+  background: #ffffff;
+}
+
+.gmail-header {
+  padding: 8px 16px;
+  border-bottom: 1px solid #dadce0;
+  background: #f6f8fc;
+}
+
+.gmail-toolbar {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: #ffffff;
+  border-bottom: 1px solid #dadce0;
+  gap: 24px;
+}
+
+.gmail-toolbar-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #5f6368;
+  font-size: 13px;
+}
+
+.gmail-toolbar-section span {
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+
+.gmail-toolbar-section span:hover {
+  background: #f1f3f4;
+}
+
+.gmail-search input {
+  width: 100%;
+  padding: 12px 16px 12px 48px;
+  border: none;
+  border-radius: 8px;
+  background: #eaf1fb;
+  color: #202124;
+  font-size: 14px;
+  outline: none;
+  position: relative;
+}
+
+.gmail-search {
+  position: relative;
+}
+
+.gmail-search::before {
+  content: "🔍";
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #5f6368;
+  z-index: 1;
+}
+
+.gmail-email {
+  display: flex;
+  align-items: center;
+  padding: 4px 16px;
+  border-bottom: 1px solid #dadce0;
+  font-size: 14px;
+  cursor: pointer;
+  height: 40px;
+  background: #ffffff;
+}
+
+.gmail-email:hover {
+  box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0,
+    0 1px 2px 0 rgba(60, 64, 67, 0.3);
+  background: #f8f9fa;
+}
+
+.email-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #5f6368;
+  border-radius: 2px;
+  margin-right: 16px;
+  cursor: pointer;
+}
+
+.email-star {
+  color: #5f6368;
+  margin-right: 16px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.email-star:hover {
+  color: #f4b400;
+}
+
+.email-sender {
+  width: 160px;
+  font-weight: 500;
+  color: #202124;
+}
+
+.email-content {
+  flex: 1;
+  display: flex;
+  gap: 8px;
+  color: #202124;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.email-snippet {
+  color: #5f6368;
+  font-weight: 400;
+}
+
+.email-time {
+  color: #5f6368;
+  font-size: 12px;
+  margin-left: 16px;
+  width: 60px;
+  text-align: right;
+}
+
+/* Update Gmail compose button */
+.gmail-compose {
+  padding: 8px 16px 16px;
+}
+
+.gmail-button {
+  background: #c2e7ff;
+  color: #001d35;
+  border: none;
+  font-weight: 500;
+  border-radius: 16px;
+  padding: 0 24px 0 16px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.gmail-button:hover {
+  background: #b6deff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.compose-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .gmail-content {
+    background: #1f1f1f;
+  }
+
+  .gmail-header {
+    background: #2d2d2d;
+    border-color: #3c4043;
+  }
+
+  .gmail-toolbar {
+    background: #1f1f1f;
+    border-color: #3c4043;
+  }
+
+  .gmail-toolbar-section {
+    color: #9aa0a6;
+  }
+
+  .gmail-toolbar-section span:hover {
+    background: #2d2d2d;
+  }
+
+  .gmail-email {
+    background: #1f1f1f;
+    border-color: #3c4043;
+  }
+
+  .gmail-email:hover {
+    background: #2d2d2d;
+  }
+
+  .email-sender,
+  .email-content {
+    color: #e8eaed;
+  }
+}
+
+/* GitHub styles */
+.github-content {
+  background: #0d1117;
+  color: #c9d1d9;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.github-header {
+  padding: 16px;
+  border-bottom: 1px solid #30363d;
+}
+
+.github-main {
+  flex: 1;
+  padding: 20px;
+}
+
+.github-repo-content {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 20px;
+}
+
+.github-breadcrumb {
+  font-size: 20px;
+  font-weight: 600;
+  color: #c9d1d9;
+}
+
+.github-button {
+  background: #238636;
+  color: white;
+  border: 1px solid rgba(240,246,252,0.1);
+  font-weight: 500;
+}
+
+.github-button:hover {
+  background: #2ea043;
+}
+
+/* Google Docs styles */
+.gdocs-content {
+  background: #f9fbfd;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.gdocs-header {
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.gdocs-menubar {
+  display: flex;
+  gap: 24px;
+  padding: 4px 16px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 13px;
+  color: #444;
+}
+
+.gdocs-menubar span {
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+.gdocs-menubar span:hover {
+  color: #1a73e8;
+}
+
+.gdocs-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.gdocs-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gdocs-title input {
+  border: none;
+  font-size: 18px;
+  color: #444;
+  width: 200px;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.gdocs-title input:hover {
+  background: #f1f3f4;
+}
+
+.gdocs-star {
+  color: #f4b400;
+  cursor: pointer;
+}
+
+.gdocs-formatting {
+  display: flex;
+  gap: 16px;
+  padding: 8px 16px;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.gdocs-formatting select {
+  padding: 4px 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #444;
+}
+
+.format-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.format-buttons span {
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #444;
+  font-size: 13px;
+}
+
+.format-buttons span:hover {
+  background: #f1f3f4;
+}
+
+.gdocs-content-area {
+  flex: 1;
+  background: #e8eaed;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.gdocs-page {
+  background: white;
+  width: 100%;
+  max-width: 850px;
+  min-height: 1100px;
+  padding: 60px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.gdocs-button {
+  background: #1a73e8;
+  color: white;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 4px;
+}
+
+.gdocs-button:hover {
+  background: #1557b0;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .reddit-content {
+    background: #030303;
+  }
+  
+  .reddit-header,
+  .reddit-post {
+    background: #1a1a1b;
+    border-color: #343536;
+  }
+  
+  .reddit-search input {
+    background: #272729;
+    border-color: #343536;
+    color: #d7dadc;
+  }
+  
+  .reddit-home,
+  .reddit-popular,
+  .post-title,
+  .post-subreddit {
+    color: #d7dadc;
+  }
+
+  .gdocs-content {
+    background: #202124;
+  }
+
+  .gdocs-header {
+    background: #2d2d2d;
+    border-color: #3c4043;
+  }
+
+  .gdocs-menubar,
+  .gdocs-toolbar,
+  .gdocs-formatting {
+    border-color: #3c4043;
+  }
+
+  .gdocs-page {
+    background: #202124;
+    border: 1px solid #3c4043;
+  }
+
+  .gdocs-title input,
+  .gdocs-formatting select {
+    background: transparent;
+    color: #e8eaed;
+    border-color: #3c4043;
+  }
+
+  .gdocs-title input:hover {
+    background: #3c4043;
+  }
+
+  .format-buttons span {
+    color: #e8eaed;
+  }
+
+  .format-buttons span:hover {
+    background: #3c4043;
+  }
+}
+
+/* Reddit styles */
+.reddit-content {
+  background: #dae0e6;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.reddit-main {
+  flex: 1;
+  padding: 20px;
+}
+
+.reddit-controls {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.reddit-header {
+  background: white;
+  padding: 8px 16px;
+  border-bottom: 1px solid #edeff1;
+}
+
+.reddit-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.reddit-home,
+.reddit-popular {
+  font-weight: 500;
+  font-size: 14px;
+  color: #1c1c1c;
+  cursor: pointer;
+}
+
+.reddit-search {
+  flex: 1;
+  max-width: 600px;
+}
+
+.reddit-search input {
+  width: 100%;
+  padding: 8px 16px;
+  border: 1px solid #edeff1;
+  border-radius: 20px;
+  background: #f6f7f8;
+}
+
+.reddit-post {
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  display: flex;
+  padding: 8px;
+  margin-bottom: 20px;
+}
+
+.post-votes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 8px;
+  color: #878a8c;
+  font-size: 12px;
+}
+
+.upvote, .downvote {
+  cursor: pointer;
+}
+
+.upvote:hover {
+  color: #ff4500;
+}
+
+.downvote:hover {
+  color: #7193ff;
+}
+
+.vote-count {
+  margin: 4px 0;
+  font-weight: 600;
+}
+
+.post-content {
+  flex: 1;
+}
+
+.post-subreddit {
+  font-size: 12px;
+  font-weight: 500;
+  color: #1c1c1c;
+  margin-bottom: 4px;
+}
+
+.post-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #1c1c1c;
+  margin-bottom: 4px;
+}
+
+.post-meta {
+  font-size: 12px;
+  color: #787c7e;
+}
+
+.reddit-button {
+  background: #0079d3;
+  color: white;
+  border: none;
+  border-radius: 20px;
+}
+
+.reddit-button:hover {
+  background: #0061a9;
 }

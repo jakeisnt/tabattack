@@ -50,13 +50,171 @@
               <div class="tab" data-original="GitHub" data-favicon="https://github.com/favicon.ico">GitHub</div>
               <div class="tab active" data-original="Google Docs" data-favicon="https://docs.google.com/favicon.ico">
                 Google Docs</div>
-              <div class="tab" data-original="Calendar" data-favicon="https://calendar.google.com/favicon.ico">Calendar
-              </div>
+              <div class="tab" data-original="Reddit" data-favicon="https://www.reddit.com/favicon.ico">Reddit</div>
             </div>
             <div class="browser-content">
-              <div class="demo-controls">
-                <button id="toggleAttack" class="demo-button">Start Attack</button>
-                <p class="demo-hint">Click different tabs to see them change!</p>
+              <!-- Gmail-style content -->
+              <div class="tab-content gmail-content">
+                <div class="gmail-header">
+                  <div class="gmail-search">
+                    <input type="text" placeholder="Search mail" disabled>
+                  </div>
+                </div>
+                <div class="gmail-toolbar">
+                  <div class="gmail-toolbar-section">
+                    <span>All</span>
+                    <span>None</span>
+                    <span>Read</span>
+                    <span>Unread</span>
+                  </div>
+                  <div class="gmail-toolbar-section">
+                    <span>Archive</span>
+                    <span>Report spam</span>
+                    <span>Delete</span>
+                  </div>
+                </div>
+                <div class="gmail-main">
+                  <div class="gmail-sidebar">
+                    <div class="gmail-compose">
+                      <button id="toggleAttack-gmail" class="demo-button gmail-button">
+                        <svg viewBox="0 0 24 24" class="compose-icon"><path d="M23,20 L23,6 L12,15 L1,6 L1,20 L23,20 Z M12,12 L22,4 L2,4 L12,12 Z" fill="currentColor"></path></svg>
+                        Start Attack
+                      </button>
+                    </div>
+                    <div class="gmail-sidebar-item active">Inbox</div>
+                    <div class="gmail-sidebar-item">Starred</div>
+                    <div class="gmail-sidebar-item">Sent</div>
+                    <div class="gmail-sidebar-item">Drafts</div>
+                  </div>
+                  <div class="gmail-content-area">
+                    <div class="gmail-emails">
+                      <div class="gmail-email">
+                        <div class="email-checkbox"></div>
+                        <div class="email-star">☆</div>
+                        <div class="email-sender">GitHub</div>
+                        <div class="email-content">
+                          <span class="email-subject">[TabAttack] New issue: Feature request</span>
+                          <span class="email-snippet">Can we add more funny titles? The current ones are...</span>
+                        </div>
+                        <div class="email-time">10:30 AM</div>
+                      </div>
+                      <div class="gmail-email">
+                        <div class="email-checkbox"></div>
+                        <div class="email-star">☆</div>
+                        <div class="email-sender">Chrome Web Store</div>
+                        <div class="email-content">
+                          <span class="email-subject">Your extension has been published</span>
+                          <span class="email-snippet">TabAttack is now live on the Chrome Web Store...</span>
+                        </div>
+                        <div class="email-time">9:45 AM</div>
+                      </div>
+                      <div class="gmail-email">
+                        <div class="email-checkbox"></div>
+                        <div class="email-star">★</div>
+                        <div class="email-sender">Your Boss</div>
+                        <div class="email-content">
+                          <span class="email-subject">Re: Those weird tab titles</span>
+                          <span class="email-snippet">I saw something strange on your screen yesterday...</span>
+                        </div>
+                        <div class="email-time">Yesterday</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- GitHub-style content -->
+              <div class="tab-content github-content hidden">
+                <div class="github-header">
+                  <div class="github-breadcrumb">jakeisnt / tabattack</div>
+                </div>
+                <div class="github-main">
+                  <div class="github-repo-content">
+                    <div class="github-controls">
+                      <button id="toggleAttack-github" class="demo-button github-button">Start Attack</button>
+                      <p class="demo-hint">Click different tabs to see them change!</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Google Docs style content -->
+              <div class="tab-content gdocs-content hidden">
+                <div class="gdocs-header">
+                  <div class="gdocs-menubar">
+                    <span>File</span>
+                    <span>Edit</span>
+                    <span>View</span>
+                    <span>Insert</span>
+                    <span>Format</span>
+                    <span>Tools</span>
+                    <span>Extensions</span>
+                    <span>Help</span>
+                  </div>
+                  <div class="gdocs-toolbar">
+                    <div class="gdocs-title">
+                      <input type="text" value="Untitled document" disabled>
+                      <span class="gdocs-star">★</span>
+                    </div>
+                    <div class="gdocs-actions">
+                      <button id="toggleAttack-google docs" class="demo-button gdocs-button">Start Attack</button>
+                    </div>
+                  </div>
+                  <div class="gdocs-formatting">
+                    <select disabled>
+                      <option>Normal text</option>
+                    </select>
+                    <select disabled>
+                      <option>Arial</option>
+                    </select>
+                    <select disabled>
+                      <option>11</option>
+                    </select>
+                    <div class="format-buttons">
+                      <span>B</span>
+                      <span>I</span>
+                      <span>U</span>
+                      <span>A</span>
+                      <span>∑</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="gdocs-content-area">
+                  <div class="gdocs-page">
+                    <p class="demo-hint">Click different tabs to see them change!</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Reddit style content -->
+              <div class="tab-content reddit-content hidden">
+                <div class="reddit-header">
+                  <div class="reddit-nav">
+                    <span class="reddit-home">Home</span>
+                    <span class="reddit-popular">Popular</span>
+                    <div class="reddit-search">
+                      <input type="text" placeholder="Search Reddit" disabled>
+                    </div>
+                  </div>
+                </div>
+                <div class="reddit-main">
+                  <div class="reddit-post">
+                    <div class="post-votes">
+                      <span class="upvote">▲</span>
+                      <span class="vote-count">3.2k</span>
+                      <span class="downvote">▼</span>
+                    </div>
+                    <div class="post-content">
+                      <div class="post-subreddit">r/ProgrammerHumor</div>
+                      <div class="post-title">My coworker's tabs are acting weird...</div>
+                      <div class="post-meta">Posted by u/suspicious_dev • 2 hours ago</div>
+                    </div>
+                  </div>
+                  <div class="reddit-controls">
+                    <button id="toggleAttack-reddit" class="demo-button reddit-button">Start Attack</button>
+                    <p class="demo-hint">Click different tabs to see them change!</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
