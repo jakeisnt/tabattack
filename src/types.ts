@@ -14,6 +14,8 @@ export interface StorageState {
   isAttacking: boolean;
   loggerConfig?: {
     enabled: boolean;
-    minLevel: 'debug' | 'info' | 'warn' | 'error';
+    minLevel: LogLevel;
   };
-} 
+}
+
+export type LogLevel = 'debug' | 'info' | 'warn' | 'error'; 

@@ -1,25 +1,24 @@
+import { ExtensionAttacker } from './extension-attacker';
 import { logger } from './logger';
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         const toggle = document.getElementById('attackToggle');
-        if (!toggle)
-            throw new Error('Toggle element not found');
         const status = document.getElementById('status');
-        if (!status)
-            throw new Error('Status element not found');
-        const { isAttacking, loggerConfig } = await chrome.storage.local.get(['isAttacking', 'loggerConfig']);
-        // Configure logger based on stored settings
-        if (loggerConfig) {
-            logger.configure(loggerConfig);
-        }
-        toggle.checked = isAttacking;
+        if (!toggle || !status)
+            throw new Error('Required elements not found');
+        const attacker = new ExtensionAttacker();
         toggle.addEventListener('change', async () => {
-            await chrome.storage.local.set({ isAttacking: toggle.checked });
-            status.textContent = toggle.checked ? 'Attacking tabs...' : 'Attack stopped';
-            chrome.runtime.sendMessage({ command: 'toggleAttack', value: toggle.checked });
+            if (toggle.checked) {
+                await attacker.startAttack();
+                status.textContent = 'Attacking tabs...';
+            }
+            else {
+                attacker.stopAttack();
+                status.textContent = 'Attack stopped';
+            }
         });
     }
     catch (error) {
-        console.error('Popup initialization failed:', error);
+        logger.error('Popup initialization failed:', error);
     }
 });
