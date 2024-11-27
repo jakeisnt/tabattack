@@ -10,17 +10,19 @@ const titleIcons: Record<TitleCategory, TitleIcon[]> = {
     {
       title: "Never Gonna Give You Up - Rick Astley ▶ 2:45",
       icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+PHBvbHlnb24gcG9pbnRzPSI2LDQgMTIsMTAgNiw4IiBmaWxsPSJyZWQiLz48L3N2Zz4=",
-    }
+    },
   ],
   twitch: [
     {
-      title: "🔴 xQc | GAMBLING $500K WITH YOUR COLLEGE FUNDS 🎰 | !gamble !stake [74.2K viewers]",
+      title:
+        "🔴 xQc | GAMBLING $500K WITH YOUR COLLEGE FUNDS 🎰 | !gamble !stake [74.2K viewers]",
       icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBmaWxsPSIjNjQ0MUE1Ii8+PC9zdmc+",
     },
     {
-      title: "🔴 Ninja | FORTNITE VICTORY ROYALES ALL DAY | !prime !sub [52.1K viewers]",
+      title:
+        "🔴 Ninja | FORTNITE VICTORY ROYALES ALL DAY | !prime !sub [52.1K viewers]",
       icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBmaWxsPSIjNjQ0MUE1Ii8+PC9zdmc+",
-    }
+    },
   ],
   funny: [
     {
@@ -34,7 +36,7 @@ const titleIcons: Record<TitleCategory, TitleIcon[]> = {
     {
       title: "Not Responding",
       icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+PHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBmaWxsPSIjY2NjIi8+PC9zdmc+",
-    }
+    },
   ],
 };
 
@@ -136,3 +138,15 @@ async function attackTab(tabId: number): Promise<void> {
     logger.error(`Failed to attack tab ${tabId}`, e as Error);
   }
 }
+
+chrome.runtime.onInstalled.addListener(() => {
+  logger.info("Extension installed");
+});
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.command === "toggleAttack") {
+    // Your existing attack toggle logic
+    sendResponse({ success: true });
+  }
+  return true;
+});
