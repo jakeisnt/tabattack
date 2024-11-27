@@ -1,3 +1,4 @@
+import { logger } from "@/logger";
 import { randomTitleAndIcon } from "@/shared";
 
 const TABS = [
@@ -78,13 +79,17 @@ class BrowserSimulation {
       }
     });
   }
-
   private setupEventListeners(): void {
     // Tab click listeners
     document.querySelectorAll(".tab").forEach((tab) => {
       tab.addEventListener("click", () => {
         if (tab instanceof HTMLElement) {
           this.activateTab(tab);
+          if (this.isAttacking) {
+            this.attackTabs();
+          } else {
+            this.restoreTab(tab);
+          }
         }
       });
     });
@@ -96,6 +101,21 @@ class BrowserSimulation {
     });
   }
 
+  /**
+   * Update the text content of all attack buttons to reflect the current attack state.
+   */
+  private updateAttackButtons(): void {
+    document.querySelectorAll('[id^="toggleAttack-"]').forEach((button) => {
+      if (button instanceof HTMLElement) {
+        button.textContent = this.isAttacking ? "Stop Attack" : "Start Attack";
+      }
+    });
+  }
+
+  /**
+   * Activate a tab.
+   * A tab is activated by making it the active tab and updating the URL bar.
+   */
   private activateTab(clickedTab: HTMLElement): void {
     const tabState = this.tabs.get(clickedTab);
     if (!tabState) return;
@@ -130,12 +150,7 @@ class BrowserSimulation {
       content.classList.add("active");
     }
 
-    // Update attack button states
-    document.querySelectorAll('[id^="toggleAttack-"]').forEach((button) => {
-      if (button instanceof HTMLElement) {
-        button.textContent = this.isAttacking ? "Stop Attack" : "Start Attack";
-      }
-    });
+    this.updateAttackButtons();
   }
 
   private toggleAttack(): void {
@@ -147,20 +162,20 @@ class BrowserSimulation {
       this.stopAttack();
     }
 
-    // Update all attack buttons
-    document.querySelectorAll('[id^="toggleAttack-"]').forEach((button) => {
-      if (button instanceof HTMLElement) {
-        button.textContent = this.isAttacking ? "Stop Attack" : "Start Attack";
-        button.classList.toggle("active", this.isAttacking);
-      }
-    });
+    this.updateAttackButtons();
   }
 
+  /**
+   * Start the attack and attack all tabs every 3 seconds.
+   */
   private startAttack(): void {
     this.attackInterval = window.setInterval(() => this.attackTabs(), 3000);
     this.attackTabs(); // Initial attack
   }
 
+  /**
+   * Stop the attack and restore all tabs.
+   */
   private stopAttack(): void {
     if (this.attackInterval) {
       window.clearInterval(this.attackInterval);
@@ -169,20 +184,29 @@ class BrowserSimulation {
     this.restoreAllTabs();
   }
 
+  /**
+   * Attack all tabs that are not the active tab.
+   */
   private attackTabs(): void {
+    if (!this.isAttacking) {
+      logger.error(
+        "Attacked tabs without attacking. Shouldn't get here. Fix this."
+      );
+      return;
+    }
+
     this.tabs.forEach((state, tab) => {
       if (!tab.classList.contains("active")) {
-        const newTitle = randomTitleAndIcon();
-        this.updateTab(tab, {
-          title: newTitle.title,
-          icon: newTitle.icon,
-          url: state.original.url,
-          className: state.original.className,
-        });
+        this.attackTab(tab);
+      } else {
+        this.restoreTab(tab);
       }
     });
   }
 
+  /**
+   * Update the tab to a new tab state.
+   */
   private updateTab(tab: HTMLElement, newTab: Tab): void {
     const tabState = this.tabs.get(tab);
     if (!tabState) return;
@@ -196,6 +220,9 @@ class BrowserSimulation {
     tab.style.backgroundImage = `url(${newTab.icon})`;
   }
 
+  /**
+   * Initialize the active tab.
+   */
   private initializeActiveTab(): void {
     const activeTab = document.querySelector(".tab.active");
     if (activeTab instanceof HTMLElement) {
@@ -203,6 +230,19 @@ class BrowserSimulation {
     }
   }
 
+  /**
+   * Attack a tab.
+   */
+  private attackTab(tab: HTMLElement): void {
+    const tabState = this.tabs.get(tab);
+    if (!tabState) return;
+
+    this.updateTab(tab, tabState.current);
+  }
+
+  /**
+   * Restore a tab to its original state.
+   */
   private restoreTab(tab: HTMLElement): void {
     const tabState = this.tabs.get(tab);
     if (!tabState) return;
@@ -210,6 +250,9 @@ class BrowserSimulation {
     this.updateTab(tab, tabState.original);
   }
 
+  /**
+   * Restore all tabs to their original state.
+   */
   private restoreAllTabs(): void {
     this.tabs.forEach((state, tab) => {
       this.restoreTab(tab);
