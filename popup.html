@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      width: 200px;
+      padding: 10px;
+      font-family: system-ui;
+    }
+    .toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    #status {
+      font-size: 12px;
+      color: #666;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="toggle">
+    <label>
+      <input type="checkbox" id="attackToggle">
+      Enable Tab Attack
+    </label>
+  </div>
+  <div id="status"></div>
+  <script src="popup.js"></script>
+</body>
+</html> 
