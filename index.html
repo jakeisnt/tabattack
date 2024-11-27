@@ -87,15 +87,39 @@
                 </svg>
               </button>
             </div>
-            <div class="browser-tabs">
-              <div class="tab" data-original="Gmail" style="--favicon: url('favicons/gmail.ico')"
-                data-url="https://mail.google.com">Gmail</div>
-              <div class="tab active" data-original="GitHub" style="--favicon: url('favicons/github.ico')"
-                data-url="https://github.com/jakeisnt/tabattack">GitHub</div>
-              <div class="tab" data-original="Google Docs" style="--favicon: url('favicons/gdocs.png')"
-                data-url="https://docs.google.com/document/d/1...">Google Docs</div>
-              <div class="tab" data-original="Reddit" style="--favicon: url('favicons/reddit.ico')"
-                data-url="https://reddit.com/r/ProgrammerHumor">Reddit</div>
+            <div class="browser-tabs" role="tablist">
+              <div class="tab" 
+                data-original="Gmail" 
+                style="--favicon: url('favicons/gmail.ico')" 
+                data-url="https://mail.google.com"
+                tabindex="0"
+                role="tab"
+                aria-selected="false"
+                aria-controls="gmail-panel">Gmail</div>
+              <div class="tab active" 
+                data-original="GitHub" 
+                style="--favicon: url('favicons/github.ico')" 
+                data-url="https://github.com/jakeisnt/tabattack"
+                tabindex="0"
+                role="tab"
+                aria-selected="true"
+                aria-controls="github-panel">GitHub</div>
+              <div class="tab" 
+                data-original="Google Docs" 
+                style="--favicon: url('favicons/gdocs.png')" 
+                data-url="https://docs.google.com/document/d/1..."
+                tabindex="0"
+                role="tab"
+                aria-selected="false"
+                aria-controls="gdocs-panel">Google Docs</div>
+              <div class="tab" 
+                data-original="Reddit" 
+                style="--favicon: url('favicons/reddit.ico')" 
+                data-url="https://reddit.com/r/ProgrammerHumor"
+                tabindex="0"
+                role="tab"
+                aria-selected="false"
+                aria-controls="reddit-panel">Reddit</div>
             </div>
             <div class="browser-content">
               <!-- Gmail-style content -->
