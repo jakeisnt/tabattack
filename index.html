@@ -1,104 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TabAttack - Chrome Extension</title>
-    <link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TabAttack - Chrome Extension</title>
+  <link rel="stylesheet" href="index.css">
+  <script type="module" src="shared.js"></script>
+  <script type="module" src="browser-sim.js"></script>
 </head>
+
 <body>
+  <div class="site-wrapper">
+    <a href="https://github.com/jakeisnt/tabattack" class="github-link" aria-label="View source on GitHub">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </a>
+
     <header>
-        <div class="container">
-            <h1>TabAttack</h1>
-            <p class="tagline">The Chrome extension that pranks your unfocused tabs</p>
-            <div class="cta-group">
-                <a href="https://github.com/yourusername/tabattack/releases/download/v1.0.0/tabattack.zip" class="cta-button">Download Extension</a>
-                <a href="https://github.com/yourusername/tabattack" class="cta-button secondary">View Source</a>
-            </div>
+      <div class="container">
+        <h1>TabAttack</h1>
+        <p class="tagline">The Chrome extension that pranks your unfocused tabs — by <a href="https://github.com/jakeisnt">jakeisnt</a></p>
+        <div class="cta-group">
+          <a href="https://github.com/jakeisnt/tabattack/releases/download/v1.0.0/tabattack.zip"
+            class="cta-button">Download Extension</a>
+          <a href="https://github.com/jakeisnt/tabattack" class="cta-button secondary">View Source</a>
         </div>
+      </div>
     </header>
 
     <main class="container">
-        <section class="features">
-            <h2>What does it do?</h2>
-            <div class="feature-grid">
-                <div class="feature">
-                    <h3>🎮 Fake Streams</h3>
-                    <p>Changes your boring tabs into fake Twitch streams with random viewer counts</p>
-                </div>
-                <div class="feature">
-                    <h3>🎵 Rick Roll</h3>
-                    <p>Transforms tabs into the legendary Never Gonna Give You Up video</p>
-                </div>
-                <div class="feature">
-                    <h3>⚠️ Pranks</h3>
-                    <p>Shows "Your Boss Behind You!" and other funny messages</p>
-                </div>
-                <div class="feature">
-                    <h3>🔄 Auto-Restore</h3>
-                    <p>Tabs return to normal when you focus them again</p>
-                </div>
+      <section class="demo">
+        <div class="browser-mock">
+          <div class="browser-chrome">
+            <div class="browser-actions">
+              <div class="browser-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="browser-address">
+                <input type="text" value="https://gmail.com" readonly>
+              </div>
             </div>
-        </section>
-
-        <section class="demo">
-            <h2>Try it out!</h2>
-            <div class="browser-mock">
-                <div class="browser-chrome">
-                    <div class="browser-actions">
-                        <div class="browser-dots">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <div class="browser-address">
-                            <input type="text" value="https://gmail.com" readonly>
-                        </div>
-                    </div>
-                    <div class="browser-tabs">
-                        <div class="tab" data-original="Gmail" data-favicon="https://www.google.com/favicon.ico">Gmail</div>
-                        <div class="tab" data-original="GitHub" data-favicon="https://github.com/favicon.ico">GitHub</div>
-                        <div class="tab active" data-original="Google Docs" data-favicon="https://docs.google.com/favicon.ico">Google Docs</div>
-                        <div class="tab" data-original="Calendar" data-favicon="https://calendar.google.com/favicon.ico">Calendar</div>
-                    </div>
-                    <div class="browser-content">
-                        <div class="demo-controls">
-                            <button id="toggleAttack" class="demo-button">Start Attack</button>
-                            <p class="demo-hint">Click different tabs to see them change!</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="browser-tabs">
+              <div class="tab" data-original="Gmail" data-favicon="https://www.google.com/favicon.ico">Gmail</div>
+              <div class="tab" data-original="GitHub" data-favicon="https://github.com/favicon.ico">GitHub</div>
+              <div class="tab active" data-original="Google Docs" data-favicon="https://docs.google.com/favicon.ico">
+                Google Docs</div>
+              <div class="tab" data-original="Calendar" data-favicon="https://calendar.google.com/favicon.ico">Calendar
+              </div>
             </div>
-        </section>
-
-        <section class="install">
-            <h2>How to Install</h2>
-            <div class="install-steps">
-                <div class="step">
-                    <span class="step-number">1</span>
-                    <p>Download the extension ZIP file</p>
-                </div>
-                <div class="step">
-                    <span class="step-number">2</span>
-                    <p>Go to chrome://extensions/</p>
-                </div>
-                <div class="step">
-                    <span class="step-number">3</span>
-                    <p>Enable "Developer mode"</p>
-                </div>
-                <div class="step">
-                    <span class="step-number">4</span>
-                    <p>Drag and drop the ZIP file into Chrome</p>
-                </div>
+            <div class="browser-content">
+              <div class="demo-controls">
+                <button id="toggleAttack" class="demo-button">Start Attack</button>
+                <p class="demo-hint">Click different tabs to see them change!</p>
+              </div>
             </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>Made with 😈 by <a href="https://github.com/yourusername">yourusername</a></p>
+          </div>
         </div>
-    </footer>
-    <script src="demo.js"></script>
+      </section>
+
+      <section class="install">
+        <h2>Installation</h2>
+        <div class="install-container">
+          <div class="install-steps">
+            <div class="step">Download ZIP</div>
+            <div class="step-arrow">→</div>
+            <div class="step">Open <code>chrome://extensions</code></div>
+            <div class="step-arrow">→</div>
+            <div class="step">Enable Developer Mode</div>
+            <div class="step-arrow">→</div>
+            <div class="step">Drop ZIP File</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="fine-print">
+        <p>By using TabAttack, you acknowledge that your coworkers may experience temporary confusion, mild panic, and/or uncontrollable laughter. Side effects may include increased workplace vigilance, tab-checking compulsion, and a newfound appreciation for browser window management. No tabs were permanently harmed in the making of this extension.</p>
+        <p>TabAttack is not responsible for any productivity gains or losses resulting from strategic tab pranking. For best results, use in conjunction with a good sense of humor and willing participants. If symptoms of FOMO persist when viewing others' apparently interesting tabs, please consult your local developer.</p>
+      </section>
+    </main>
+  </div>
+  <script src="demo.js"></script>
 </body>
-</html> 
+
+</html>
