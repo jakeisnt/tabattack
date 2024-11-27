@@ -48,7 +48,7 @@
                     <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z" fill="currentColor"/>
                   </svg>
                 </div>
-                <input type="text" value="https://gmail.com" readonly>
+                <input type="text" value="https://mail.google.com" readonly>
                 <div class="browser-address-actions">
                   <button class="browser-star">
                     <svg viewBox="0 0 24 24" width="16" height="16">
@@ -66,13 +66,14 @@
               </button>
             </div>
             <div class="browser-tabs">
-              <div class="tab" data-original="Gmail" data-favicon="https://www.google.com/favicon.ico">Gmail</div>
-              <div class="tab active" data-original="GitHub" data-favicon="https://github.com/favicon.ico">GitHub</div>
-              <div class="tab" data-original="Google Docs" data-favicon="https://docs.google.com/favicon.ico">Google Docs</div>
-              <div class="tab" data-original="Reddit" data-favicon="https://www.reddit.com/favicon.ico">Reddit</div>
+              <div class="tab" data-original="Gmail" data-favicon="favicons/gmail.ico">Gmail</div>
+              <div class="tab active" data-original="GitHub" data-favicon="favicons/github.ico">GitHub</div>
+              <div class="tab" data-original="Google Docs" data-favicon="favicons/gdocs.ico">Google Docs</div>
+              <div class="tab" data-original="Reddit" data-favicon="favicons/reddit.ico">Reddit</div>
             </div>
             <div class="browser-content">
-              <div class="tab-content gmail-content hidden">
+              <!-- Gmail-style content -->
+              <div class="tab-content gmail-content">
                 <div class="gmail-header">
                   <div class="gmail-search">
                     <input type="text" placeholder="Search mail" disabled>
@@ -185,7 +186,8 @@
                 </div>
               </div>
 
-              <div class="tab-content github-content active">
+              <!-- GitHub-style content -->
+              <div class="tab-content github-content hidden">
                 <div class="github-header">
                   <div class="github-nav">
                     <div class="github-breadcrumb">jakeisnt / tabattack</div>
@@ -282,6 +284,7 @@
                 </div>
               </div>
 
+              <!-- Google Docs style content -->
               <div class="tab-content gdocs-content hidden">
                 <div class="gdocs-header">
                   <div class="gdocs-menubar">
@@ -329,6 +332,7 @@
                 </div>
               </div>
 
+              <!-- Reddit style content -->
               <div class="tab-content reddit-content hidden">
                 <div class="reddit-header">
                   <div class="reddit-nav">

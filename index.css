@@ -347,7 +347,7 @@ h2 {
 }
 
 .tab {
-  padding: 6px 28px 6px 28px;
+  padding: 4px 28px 4px 28px;
   background: color-mix(in srgb, var(--chrome-bg) 85%, black);
   border-radius: 8px 8px 0 0;
   font-size: 13px;
@@ -378,6 +378,23 @@ h2 {
   left: 8px;
   top: 50%;
   transform: translateY(-50%);
+  background-image: url(attr(data-favicon url));
+}
+
+.tab[data-original="Gmail"]::before {
+  background-image: url("favicons/gmail.ico");
+}
+
+.tab[data-original="GitHub"]::before {
+  background-image: url("favicons/github.ico");
+}
+
+.tab[data-original="Google Docs"]::before {
+  background-image: url("favicons/gdocs.png");
+}
+
+.tab[data-original="Reddit"]::before {
+  background-image: url("favicons/reddit.ico");
 }
 
 .tab::after {
@@ -460,7 +477,7 @@ h2 {
   }
 
   .browser-tabs {
-    gap: 4px; /* Remove gap between tabs on mobile */
+    gap: 0; /* Remove gap between tabs on mobile */
   }
 }
 
