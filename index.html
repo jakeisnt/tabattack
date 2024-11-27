@@ -6,20 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TabAttack - Chrome Extension</title>
   <link rel="stylesheet" href="index.css">
-  <script type="importmap">
-    {
-      "imports": {
-        "@/extension/": "./dist/extension/",
-        "@/web/": "./dist/web/",
-        "@/core": "./dist/core.js",
-        "@/types": "./dist/types.js",
-        "@/shared": "./dist/shared.js",
-        "@/logger": "./dist/logger.js",
-        "@/web/demo-attacker": "./dist/web/demo-attacker.js",
-        "@/web/browser-sim": "./dist/web/browser-sim.js",
-        "@/web/demo": "./dist/web/demo.js"
-      }
-    }
+  <script type="importmap" src="importmap.json"></script>
   </script>
   <script type="module" src="dist/core.js"></script>
   <script type="module" src="dist/types.js"></script>

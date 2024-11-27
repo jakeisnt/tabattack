@@ -1,0 +1,13 @@
+{
+  "imports": {
+    "@/extension/": "./dist/extension/",
+    "@/web/": "./dist/web/",
+    "@/core": "./dist/core.js",
+    "@/types": "./dist/types.js",
+    "@/shared": "./dist/shared.js",
+    "@/logger": "./dist/logger.js",
+    "@/web/demo-attacker": "./dist/web/demo-attacker.js",
+    "@/web/browser-sim": "./dist/web/browser-sim.js",
+    "@/web/demo": "./dist/web/demo.js"
+  }
+}

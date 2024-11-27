@@ -2,7 +2,7 @@ import { TabAttacker } from "@/core";
 import { logger } from "@/logger";
 
 export class ExtensionAttacker extends TabAttacker {
-  protected async attackTabs(): Promise<void> {
+  public async attackTabs(): Promise<void> {
     const tabs = await chrome.tabs.query({ active: false });
 
     for (const tab of tabs) {
