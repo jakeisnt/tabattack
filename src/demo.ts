@@ -1,4 +1,13 @@
-const titleIcons = {
+interface TitleIcon {
+    title: string;
+    favicon: string;
+}
+
+interface TitleIconCategories {
+    [key: string]: TitleIcon[];
+}
+
+const titleIcons: TitleIconCategories = {
     youtube: [
         {
             title: "🔴 LIVE: Cute Puppies Playing 24/7 Stream",
@@ -28,17 +37,17 @@ const titleIcons = {
 };
 
 let isAttacking = false;
-let attackInterval;
+let attackInterval: number | null = null;
 
-function getRandomTitle() {
+function getRandomTitle(): TitleIcon {
     const categories = Object.keys(titleIcons);
     const category = categories[Math.floor(Math.random() * categories.length)];
     const titles = titleIcons[category];
     return titles[Math.floor(Math.random() * titles.length)];
 }
 
-function attackTabs() {
-    const tabs = document.querySelectorAll('.tab:not(.active)');
+function attackTabs(): void {
+    const tabs = document.querySelectorAll<HTMLElement>('.tab:not(.active)');
     tabs.forEach(tab => {
         const newTitle = getRandomTitle();
         tab.textContent = newTitle.title;
@@ -46,18 +55,28 @@ function attackTabs() {
     });
 }
 
-function restoreTab(tab) {
-    tab.textContent = tab.dataset.original;
-    tab.style.backgroundImage = `url(${tab.dataset.favicon})`;
+function restoreTab(tab: HTMLElement): void {
+    const originalTitle = tab.dataset.original;
+    const originalFavicon = tab.dataset.favicon;
+    
+    if (originalTitle && originalFavicon) {
+        tab.textContent = originalTitle;
+        tab.style.backgroundImage = `url(${originalFavicon})`;
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     const toggleBtn = document.getElementById('toggleAttack');
-    const tabs = document.querySelectorAll('.tab');
+    const tabs = document.querySelectorAll<HTMLElement>('.tab');
+
+    if (!toggleBtn) return;
 
     // Initialize tabs with favicons
     tabs.forEach(tab => {
-        tab.style.backgroundImage = `url(${tab.dataset.favicon})`;
+        const favicon = tab.dataset.favicon;
+        if (favicon) {
+            tab.style.backgroundImage = `url(${favicon})`;
+        }
     });
 
     toggleBtn.addEventListener('click', () => {
@@ -65,10 +84,13 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleBtn.textContent = isAttacking ? 'Stop Attack' : 'Start Attack';
         
         if (isAttacking) {
-            attackInterval = setInterval(attackTabs, 3000);
+            attackInterval = window.setInterval(attackTabs, 3000);
             attackTabs(); // Initial attack
         } else {
-            clearInterval(attackInterval);
+            if (attackInterval) {
+                clearInterval(attackInterval);
+                attackInterval = null;
+            }
             // Restore all tabs
             tabs.forEach(tab => restoreTab(tab));
         }
