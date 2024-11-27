@@ -21,7 +21,12 @@
       }
     }
   </script>
+  <script type="module" src="dist/core.js"></script>
+  <script type="module" src="dist/types.js"></script>
+  <script type="module" src="dist/shared.js"></script>
+  <script type="module" src="dist/web/demo-attacker.js"></script>
   <script type="module" src="dist/web/demo.js"></script>
+  <script type="module" src="dist/web/browser-sim.js"></script>
 
 <body>
   <div class="site-wrapper">
@@ -78,10 +83,22 @@
               </button>
             </div>
             <div class="browser-tabs">
-              <div class="tab" data-original="Gmail" data-favicon="favicons/gmail.ico" data-url="https://mail.google.com">Gmail</div>
-              <div class="tab active" data-original="GitHub" data-favicon="favicons/github.ico" data-url="https://github.com/jakeisnt/tabattack">GitHub</div>
-              <div class="tab" data-original="Google Docs" data-favicon="favicons/gdocs.png" data-url="https://docs.google.com/document/d/1...">Google Docs</div>
-              <div class="tab" data-original="Reddit" data-favicon="favicons/reddit.ico" data-url="https://reddit.com/r/ProgrammerHumor">Reddit</div>
+              <div class="tab" 
+                data-original="Gmail" 
+                style="--favicon: url('favicons/gmail.ico')" 
+                data-url="https://mail.google.com">Gmail</div>
+              <div class="tab active" 
+                data-original="GitHub" 
+                style="--favicon: url('favicons/github.ico')" 
+                data-url="https://github.com/jakeisnt/tabattack">GitHub</div>
+              <div class="tab" 
+                data-original="Google Docs" 
+                style="--favicon: url('favicons/gdocs.png')" 
+                data-url="https://docs.google.com/document/d/1...">Google Docs</div>
+              <div class="tab" 
+                data-original="Reddit" 
+                style="--favicon: url('favicons/reddit.ico')" 
+                data-url="https://reddit.com/r/ProgrammerHumor">Reddit</div>
             </div>
             <div class="browser-content">
               <!-- Gmail-style content -->

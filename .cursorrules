@@ -1,0 +1,12 @@
+// Cursor rules for expert TypeScript development
+// - Prefer "@/" imports for internal modules
+// - Prefer single export at end of file
+// - Avoid default exports
+// - Group imports at top of file
+// - Use type imports when possible
+// - Use explicit return types
+// - Maintain consistent import order:
+//   1. External dependencies
+//   2. Internal "@/" imports
+//   3. Type imports
+//   4. Relative imports

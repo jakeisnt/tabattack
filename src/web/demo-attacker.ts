@@ -1,5 +1,5 @@
 import { TabAttacker } from "@/core";
-import { TABS } from "@/web/browser-sim";
+import { TABS, type Tab } from "@/web/browser-sim";
 
 /**
  * Demo implementation of TabAttacker.
@@ -8,13 +8,39 @@ import { TABS } from "@/web/browser-sim";
  * @extends TabAttacker
  */
 export class DemoAttacker extends TabAttacker {
-  /**
-   * Mapping of tab names to their original URLs
-   * Used for restoring tabs to their initial state
-   */
-  private readonly tabUrls: { [key: string]: string } = Object.fromEntries(
-    TABS.map((tab) => [tab.title, tab.url])
-  );
+  private tabs: Map<HTMLElement, Tab> = new Map();
+
+  constructor() {
+    super();
+    this.initializeTabs();
+    this.setupAttackButtons();
+  }
+
+  private initializeTabs(): void {
+    document.querySelectorAll<HTMLElement>(".tab").forEach((tab) => {
+      const original = tab.dataset.original;
+      if (!original) return;
+
+      const tabInfo = TABS.find((t) => t.title === original);
+      if (tabInfo) {
+        this.tabs.set(tab, tabInfo);
+      }
+    });
+  }
+
+  private setupAttackButtons(): void {
+    document.querySelectorAll('[id^="toggleAttack-"]').forEach((button) => {
+      button.addEventListener("click", () => {
+        if (this.isCurrentlyAttacking()) {
+          this.stopAttack();
+          button.textContent = "Start Attack";
+        } else {
+          this.startAttack();
+          button.textContent = "Stop Attack";
+        }
+      });
+    });
+  }
 
   /**
    * Attacks all inactive tabs in the demo interface
@@ -23,20 +49,11 @@ export class DemoAttacker extends TabAttacker {
    * - Updates address bar if needed
    */
   protected async attackTabs(): Promise<void> {
-    const tabs = document.querySelectorAll<HTMLElement>(".tab:not(.active)");
-    const addressInput = document.querySelector<HTMLInputElement>(
-      ".browser-address input"
-    );
-
-    tabs.forEach((tab) => {
-      const newTitle = this.getRandomTitleIcon();
-      const newUrl = this.getRandomUrl();
-
-      tab.textContent = newTitle.title;
-      tab.setAttribute("data-url", newUrl);
-
-      if (tab.classList.contains("active") && addressInput) {
-        addressInput.value = newUrl;
+    this.tabs.forEach((originalTab, element) => {
+      if (!element.classList.contains("active")) {
+        const newTitle = this.getRandomTitleIcon();
+        element.textContent = newTitle.title;
+        element.style.setProperty("--favicon", `url('${newTitle.icon}')`);
       }
     });
   }
@@ -46,12 +63,9 @@ export class DemoAttacker extends TabAttacker {
    * Uses original titles and URLs from tabUrls mapping
    */
   protected restoreAllTabs(): void {
-    document.querySelectorAll<HTMLElement>(".tab").forEach((tab) => {
-      const originalTitle = tab.dataset.original;
-      if (originalTitle) {
-        tab.textContent = originalTitle;
-        tab.setAttribute("data-url", this.tabUrls[originalTitle] || "");
-      }
+    this.tabs.forEach((originalTab, element) => {
+      element.textContent = originalTab.title;
+      element.style.setProperty("--favicon", `url('${originalTab.icon}')`);
     });
   }
 

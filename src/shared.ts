@@ -3,7 +3,7 @@ import type { TitleIcon, TitleCategory } from "@/types";
 export const titleIcons: Record<TitleCategory, TitleIcon[]> = {
   youtube: [
     {
-      title: "🔴 LIVE: Cute Puppies Playing 24/7 Stream",
+      title: "LIVE: Cute Puppies Playing 24/7 Stream",
       icon: "favicons/youtube.ico",
     },
     {
@@ -14,7 +14,7 @@ export const titleIcons: Record<TitleCategory, TitleIcon[]> = {
   twitch: [
     {
       title:
-        "🔴 xQc | GAMBLING $500K WITH YOUR COLLEGE FUNDS 🎰 | !gamble !stake [74.2K viewers]",
+        "xQc | GAMBLING $500K WITH YOUR COLLEGE FUNDS 🎰 | !gamble !stake [74.2K viewers]",
       icon: "favicons/twitch.ico",
     },
   ],
