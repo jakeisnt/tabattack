@@ -1,3 +1,6 @@
+const TABS = ["gmail", "github", "google docs", "reddit"] as const;
+type TabId = typeof TABS[number];
+
 import { titleIcons, randomTitleAndIcon } from "./shared.js";
 
 interface TabState {
@@ -63,7 +66,7 @@ class BrowserSimulation {
     });
 
     // Attack button listeners
-    ["gmail", "github", "google docs", "reddit"].forEach((tabId) => {
+    TABS.forEach((tabId) => {
       const button = document.querySelector(
         `#toggleAttack-${tabId.replace(" ", "-")}`
       );
@@ -103,14 +106,14 @@ class BrowserSimulation {
     });
 
     // Show the correct content
-    const contentMap: Record<string, string> = {
+    const contentMap: Record<TabId, string> = {
       gmail: ".gmail-content",
       github: ".github-content",
       "google docs": ".gdocs-content",
       reddit: ".reddit-content",
     };
 
-    const contentSelector = contentMap[tabState.id];
+    const contentSelector = contentMap[tabState.id as TabId];
     if (contentSelector) {
       const content = document.querySelector(contentSelector);
       if (content) {

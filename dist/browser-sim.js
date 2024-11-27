@@ -1,3 +1,4 @@
+const TABS = ["gmail", "github", "google docs", "reddit"];
 import { randomTitleAndIcon } from "./shared.js";
 class BrowserSimulation {
     constructor() {
@@ -44,7 +45,7 @@ class BrowserSimulation {
             });
         });
         // Attack button listeners
-        ["gmail", "github", "google docs", "reddit"].forEach((tabId) => {
+        TABS.forEach((tabId) => {
             const button = document.querySelector(`#toggleAttack-${tabId.replace(" ", "-")}`);
             button?.addEventListener("click", () => this.toggleAttack());
         });
