@@ -460,7 +460,7 @@ h2 {
   }
 
   .browser-tabs {
-    gap: 0; /* Remove gap between tabs on mobile */
+    gap: 4px; /* Remove gap between tabs on mobile */
   }
 }
 
