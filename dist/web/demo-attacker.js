@@ -29,9 +29,6 @@ export class DemoAttacker extends TabAttacker {
             // and attack all of the others, if attacking.
             tab.addEventListener("click", () => {
                 this.restoreTab(tab);
-                if (this.isCurrentlyAttacking()) {
-                    this.attackTabs();
-                }
             });
         });
     }
@@ -39,17 +36,23 @@ export class DemoAttacker extends TabAttacker {
      * Sets up event listeners for attack buttons
      */
     setupAttackButtons() {
-        document.querySelectorAll('[id^="toggleAttack-"]').forEach((button) => {
+        document
+            .querySelectorAll('[id^="toggleAttack-"]')
+            .forEach((button) => {
             button.addEventListener("click", () => {
                 if (this.isCurrentlyAttacking()) {
                     this.stopAttack();
-                    document.querySelectorAll('[id^="toggleAttack-"]').forEach(btn => {
+                    document
+                        .querySelectorAll('[id^="toggleAttack-"]')
+                        .forEach((btn) => {
                         btn.textContent = "Start Attack";
                     });
                 }
                 else {
                     this.startAttack();
-                    document.querySelectorAll('[id^="toggleAttack-"]').forEach(btn => {
+                    document
+                        .querySelectorAll('[id^="toggleAttack-"]')
+                        .forEach((btn) => {
                         btn.textContent = "Stop Attack";
                     });
                 }

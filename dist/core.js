@@ -20,9 +20,9 @@ import { logger } from "@/logger";
 export class TabAttacker {
     /**
      * Creates a new TabAttacker instance
-     * @param intervalTime - Milliseconds between attacks (default: 3000ms)
+     * @param intervalTime - Milliseconds between attacks (default: 1000ms)
      */
-    constructor(intervalTime = 3000) {
+    constructor(intervalTime = 1000) {
         this.intervalTime = intervalTime;
         /** Current attack state */
         this.isAttacking = false;
