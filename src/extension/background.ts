@@ -1,5 +1,5 @@
-import { ExtensionAttacker } from "./extension-attacker";
-import { logger } from "../logger";
+import { ExtensionAttacker } from "@/extension/extension-attacker";
+import { logger } from "@/logger";
 
 const attacker = new ExtensionAttacker();
 

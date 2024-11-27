@@ -1,5 +1,5 @@
-import { TabAttacker } from "../core";
-import { logger } from "../logger";
+import { TabAttacker } from "@/core";
+import { logger } from "@/logger";
 
 export class ExtensionAttacker extends TabAttacker {
   protected async attackTabs(): Promise<void> {

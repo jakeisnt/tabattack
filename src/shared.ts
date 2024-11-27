@@ -1,4 +1,4 @@
-import type { TitleIcon, TitleCategory } from "./types";
+import type { TitleIcon, TitleCategory } from "@/types";
 
 export const titleIcons: Record<TitleCategory, TitleIcon[]> = {
   youtube: [

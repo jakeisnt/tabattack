@@ -11,11 +11,12 @@
     "allowJs": true,
     "moduleDetection": "force",
     "allowImportingTsExtensions": false,
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "verbatimModuleSyntax": true,
     "baseUrl": ".",
     "paths": {
+      "@/*": ["src/*"],
       "@core/*": ["src/core/*"],
       "@extension/*": ["src/extension/*"],
       "@web/*": ["src/web/*"]

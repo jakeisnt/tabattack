@@ -1,4 +1,4 @@
-import { randomTitleAndIcon } from "@core/shared";
+import { randomTitleAndIcon } from "@/shared";
 const TABS = [
     {
         title: "Gmail",

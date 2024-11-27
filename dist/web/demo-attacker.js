@@ -1,6 +1,5 @@
-import { TabAttacker } from "@core/core";
-import { logger } from "@core/logger";
-import { TABS } from "./browser-sim";
+import { TabAttacker } from "@/core";
+import { TABS } from "@/web/browser-sim";
 /**
  * Demo implementation of TabAttacker.
  * Handles attacking and restoring tabs in the browser demo interface.

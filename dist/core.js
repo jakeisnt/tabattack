@@ -1,5 +1,5 @@
-import { randomTitleAndIcon } from "./shared";
-import { logger } from "./logger";
+import { randomTitleAndIcon } from "@/shared";
+import { logger } from "@/logger";
 /**
  * Base class for implementing tab attack functionality.
  * Provides core attack/restore logic and state management.

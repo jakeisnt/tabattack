@@ -1,4 +1,4 @@
-import { DemoAttacker } from "./demo-attacker";
+import { DemoAttacker } from "@/web/demo-attacker";
 document.addEventListener("DOMContentLoaded", () => {
     const attacker = new DemoAttacker();
     // Set up attack toggle buttons

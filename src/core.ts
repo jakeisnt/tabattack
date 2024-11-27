@@ -1,6 +1,6 @@
-import type { TitleIcon, TabState } from "./types";
-import { randomTitleAndIcon } from "./shared";
-import { logger } from "./logger";
+import type { TitleIcon, TabState } from "@/types";
+import { randomTitleAndIcon } from "@/shared";
+import { logger } from "@/logger";
 
 /**
  * Base class for implementing tab attack functionality.
