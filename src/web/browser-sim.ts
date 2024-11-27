@@ -1,18 +1,44 @@
-const TABS = ["gmail", "github", "google docs", "reddit"] as const;
-type TabId = typeof TABS[number];
+import { randomTitleAndIcon } from "@core/shared";
 
-import { titleIcons, randomTitleAndIcon } from "./shared.js";
+const TABS = [
+  {
+    title: "Gmail",
+    icon: "favicons/gmail.ico",
+    url: "https://mail.google.com",
+    className: "gmail",
+  },
+  {
+    title: "GitHub",
+    icon: "favicons/github.ico",
+    url: "https://github.com/jakeisnt/tabattack",
+    className: "github",
+  },
+  {
+    title: "Google Docs",
+    icon: "favicons/gdocs.ico",
+    url: "https://docs.google.com/document/d/1...",
+    className: "gdocs",
+  },
+  {
+    title: "Reddit",
+    icon: "favicons/reddit.ico",
+    url: "https://reddit.com/r/ProgrammerHumor",
+    className: "reddit",
+  },
+] as const;
+
+type Tab = {
+  title: string;
+  // path to a favicon in the favicons/ dir
+  icon: string;
+  url: string;
+  className: string;
+};
 
 interface TabState {
   id: string;
-  original: {
-    title: string;
-    icon: string;
-  };
-  current: {
-    title: string;
-    icon: string;
-  };
+  original: Tab;
+  current: Tab;
 }
 
 class BrowserSimulation {
@@ -37,16 +63,14 @@ class BrowserSimulation {
       if (!original || !icon) return;
 
       const tabId = original.toLowerCase();
+      const tabInfo = TABS.find((t) => t.title.toLowerCase() === tabId);
+
+      if (!tabInfo) return;
+
       this.tabs.set(tab, {
         id: tabId,
-        original: {
-          title: original,
-          icon: icon,
-        },
-        current: {
-          title: original,
-          icon: icon,
-        },
+        original: tabInfo,
+        current: tabInfo,
       });
 
       if (tab.classList.contains("active")) {
@@ -66,10 +90,8 @@ class BrowserSimulation {
     });
 
     // Attack button listeners
-    TABS.forEach((tabId) => {
-      const button = document.querySelector(
-        `#toggleAttack-${tabId.replace(" ", "-")}`
-      );
+    TABS.forEach((tab) => {
+      const button = document.querySelector(`#toggleAttack-${tab.className}`);
       button?.addEventListener("click", () => this.toggleAttack());
     });
   }
@@ -84,13 +106,8 @@ class BrowserSimulation {
     const urlInput = document.querySelector(
       ".browser-address input"
     ) as HTMLInputElement;
-    if (urlInput && tabState.current.icon) {
-      try {
-        const domain = new URL(tabState.current.icon).hostname;
-        urlInput.value = `https://${domain}`;
-      } catch (e) {
-        console.error("Invalid favicon URL:", tabState.current.icon);
-      }
+    if (urlInput) {
+      urlInput.value = tabState.current.url;
     }
 
     // Update tab states
@@ -106,20 +123,11 @@ class BrowserSimulation {
     });
 
     // Show the correct content
-    const contentMap: Record<TabId, string> = {
-      gmail: ".gmail-content",
-      github: ".github-content",
-      "google docs": ".gdocs-content",
-      reddit: ".reddit-content",
-    };
-
-    const contentSelector = contentMap[tabState.id as TabId];
-    if (contentSelector) {
-      const content = document.querySelector(contentSelector);
-      if (content) {
-        content.classList.remove("hidden");
-        content.classList.add("active");
-      }
+    const contentSelector = `.${tabState.current.className}-content`;
+    const content = document.querySelector(contentSelector);
+    if (content) {
+      content.classList.remove("hidden");
+      content.classList.add("active");
     }
 
     // Update attack button states
@@ -165,22 +173,27 @@ class BrowserSimulation {
     this.tabs.forEach((state, tab) => {
       if (!tab.classList.contains("active")) {
         const newTitle = randomTitleAndIcon();
-        this.updateTab(tab, newTitle);
+        this.updateTab(tab, {
+          title: newTitle.title,
+          icon: newTitle.icon,
+          url: state.original.url,
+          className: state.original.className,
+        });
       }
     });
   }
 
-  private updateTab(
-    tab: HTMLElement,
-    titleIcon: { title: string; icon: string }
-  ): void {
+  private updateTab(tab: HTMLElement, newTab: Tab): void {
     const tabState = this.tabs.get(tab);
     if (!tabState) return;
 
-    tabState.current = titleIcon;
-    tab.textContent = titleIcon.title;
-    // Update favicon
-    tab.style.backgroundImage = `url(${titleIcon.icon})`;
+    tabState.current = {
+      ...newTab,
+      url: tabState.original.url,
+    };
+
+    tab.textContent = newTab.title;
+    tab.style.backgroundImage = `url(${newTab.icon})`;
   }
 
   private initializeActiveTab(): void {
@@ -210,3 +223,5 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 console.log("browser-sim.ts loaded");
+
+export { TABS };

@@ -1,32 +1,33 @@
-import { TitleIcon, TitleCategory } from './types';
+import type { TitleIcon, TitleCategory } from "./types";
 
 export const titleIcons: Record<TitleCategory, TitleIcon[]> = {
   youtube: [
     {
       title: "🔴 LIVE: Cute Puppies Playing 24/7 Stream",
-      icon: "favicons/youtube.ico"
+      icon: "favicons/youtube.ico",
     },
     {
       title: "Never Gonna Give You Up - Rick Astley ▶ 2:45",
-      icon: "favicons/youtube.ico"
-    }
+      icon: "favicons/youtube.ico",
+    },
   ],
   twitch: [
     {
-      title: "🔴 xQc | GAMBLING $500K WITH YOUR COLLEGE FUNDS 🎰 | !gamble !stake [74.2K viewers]",
-      icon: "favicons/twitch.ico"
-    }
+      title:
+        "🔴 xQc | GAMBLING $500K WITH YOUR COLLEGE FUNDS 🎰 | !gamble !stake [74.2K viewers]",
+      icon: "favicons/twitch.ico",
+    },
   ],
   funny: [
     {
       title: "System32 Deletion Progress",
-      icon: "favicons/windows.ico"
+      icon: "favicons/windows.ico",
     },
     {
       title: "Your Boss Behind You!",
-      icon: "favicons/warning.ico"
-    }
-  ]
+      icon: "favicons/warning.ico",
+    },
+  ],
 };
 
 export function randomProgress(): string {
@@ -53,7 +54,10 @@ export function randomTitleAndIcon(): TitleIcon {
     category = "funny";
   }
 
-  const entry = titleIcons[category][Math.floor(Math.random() * titleIcons[category].length)];
+  const entry =
+    titleIcons[category][
+      Math.floor(Math.random() * titleIcons[category].length)
+    ];
 
   if (category === "youtube" && entry.title.includes("▶")) {
     return {
@@ -73,4 +77,4 @@ export function randomTitleAndIcon(): TitleIcon {
   }
 
   return entry;
-} 
+}

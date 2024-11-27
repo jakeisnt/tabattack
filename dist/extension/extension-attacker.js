@@ -1,5 +1,5 @@
-import { TabAttacker } from './core';
-import { logger } from './logger';
+import { TabAttacker } from "../core";
+import { logger } from "../logger";
 export class ExtensionAttacker extends TabAttacker {
     async attackTabs() {
         const tabs = await chrome.tabs.query({ active: false });
@@ -9,8 +9,8 @@ export class ExtensionAttacker extends TabAttacker {
             try {
                 if (!this.getOriginalState(tab.id)) {
                     this.storeOriginalState(tab.id, {
-                        title: tab.title || '',
-                        icon: await this.getTabIcon(tab.id)
+                        title: tab.title || "",
+                        icon: await this.getTabIcon(tab.id),
                     });
                 }
                 const titleIcon = this.getRandomTitleIcon();
@@ -26,28 +26,29 @@ export class ExtensionAttacker extends TabAttacker {
             target: { tabId },
             func: () => {
                 const iconLink = document.querySelector('link[rel*="icon"]');
-                return iconLink?.href || '';
-            }
+                return iconLink?.href || "";
+            },
         });
-        return iconResult?.result || '';
+        return iconResult?.result || "";
     }
     async updateTab(tabId, titleIcon) {
         await chrome.scripting.executeScript({
             target: { tabId },
             func: (title, icon) => {
                 document.title = title;
-                let link = document.querySelector('link[rel*="icon"]') || document.createElement('link');
-                link.type = 'image/x-icon';
-                link.rel = 'shortcut icon';
+                let link = document.querySelector('link[rel*="icon"]') ||
+                    document.createElement("link");
+                link.type = "image/x-icon";
+                link.rel = "shortcut icon";
                 link.href = icon;
                 document.head.appendChild(link);
             },
-            args: [titleIcon.title, titleIcon.icon]
+            args: [titleIcon.title, titleIcon.icon],
         });
     }
     restoreAllTabs() {
         this.originalStates.forEach((state, tabId) => {
-            if (typeof tabId === 'number') {
+            if (typeof tabId === "number") {
                 this.updateTab(tabId, state);
             }
         });

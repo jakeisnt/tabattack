@@ -8,7 +8,7 @@ export interface TabState {
   icon: string;
 }
 
-export type TitleCategory = 'youtube' | 'twitch' | 'funny';
+export type TitleCategory = "youtube" | "twitch" | "funny";
 
 export interface StorageState {
   isAttacking: boolean;
@@ -18,4 +18,4 @@ export interface StorageState {
   };
 }
 
-export type LogLevel = 'debug' | 'info' | 'warn' | 'error'; 
+export type LogLevel = "debug" | "info" | "warn" | "error";
