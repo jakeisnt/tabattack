@@ -15,7 +15,7 @@ const TABS = [
     },
     {
         title: "Google Docs",
-        icon: "favicons/gdocs.ico",
+        icon: "favicons/gdocs.png",
         url: "https://docs.google.com/document/d/1...",
         className: "gdocs",
     },
@@ -65,10 +65,10 @@ class BrowserSimulation {
                 if (tab instanceof HTMLElement) {
                     this.activateTab(tab);
                     if (this.isAttacking) {
-                        this.attackTabs();
+                        this.restoreTab(tab);
                     }
                     else {
-                        this.restoreTab(tab);
+                        this.attackTabs();
                     }
                 }
             });
@@ -115,10 +115,14 @@ class BrowserSimulation {
         });
         // Show the correct content
         const contentSelector = `.${tabState.current.className}-content`;
+        console.log("Looking for content:", contentSelector); // Debug
         const content = document.querySelector(contentSelector);
         if (content) {
             content.classList.remove("hidden");
             content.classList.add("active");
+        }
+        else {
+            console.warn("Content not found for selector:", contentSelector); // Debug
         }
         this.updateAttackButtons();
     }
@@ -178,7 +182,9 @@ class BrowserSimulation {
             url: tabState.original.url,
         };
         tab.textContent = newTab.title;
-        tab.style.backgroundImage = `url(${newTab.icon})`;
+        // Remove any existing favicon
+        tab.style.removeProperty("--favicon");
+        tab.setAttribute("data-original", newTab.title);
     }
     /**
      * Initialize the active tab.
