@@ -43,8 +43,27 @@
                 <span></span>
               </div>
               <div class="browser-address">
+                <div class="browser-address-prefix">
+                  <svg viewBox="0 0 24 24" width="16" height="16">
+                    <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z" fill="currentColor"/>
+                  </svg>
+                </div>
                 <input type="text" value="https://gmail.com" readonly>
+                <div class="browser-address-actions">
+                  <button class="browser-star">
+                    <svg viewBox="0 0 24 24" width="16" height="16">
+                      <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                </div>
               </div>
+              <button class="browser-menu">
+                <svg viewBox="0 0 24 24" width="16" height="16">
+                  <circle cx="12" cy="6" r="2" fill="currentColor"/>
+                  <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                  <circle cx="12" cy="18" r="2" fill="currentColor"/>
+                </svg>
+              </button>
             </div>
             <div class="browser-tabs">
               <div class="tab" data-original="Gmail" data-favicon="https://www.google.com/favicon.ico">Gmail</div>
@@ -78,20 +97,24 @@
                   <div class="gmail-sidebar">
                     <div class="gmail-compose">
                       <button id="toggleAttack-gmail" class="demo-button gmail-button">
-                        <svg viewBox="0 0 24 24" class="compose-icon"><path d="M23,20 L23,6 L12,15 L1,6 L1,20 L23,20 Z M12,12 L22,4 L2,4 L12,12 Z" fill="currentColor"></path></svg>
+                        <svg viewBox="0 0 24 24" class="compose-icon" style="width: 16px; height: 16px; margin-right: 4px">
+                          <path d="M3,20 L21,10 L3,4 L3,9 L15,10 L3,11 L3,20 Z" fill="currentColor"></path>
+                        </svg>
                         Start Attack
                       </button>
                     </div>
-                    <div class="gmail-sidebar-item active">Inbox</div>
-                    <div class="gmail-sidebar-item">Starred</div>
-                    <div class="gmail-sidebar-item">Sent</div>
-                    <div class="gmail-sidebar-item">Drafts</div>
+                    <div class="gmail-nav">
+                      <span class="gmail-sidebar-item active">Inbox</span>
+                      <span class="gmail-sidebar-item">Starred</span>
+                      <span class="gmail-sidebar-item">Sent</span>
+                      <span class="gmail-sidebar-item">Drafts</span>
+                    </div>
                   </div>
                   <div class="gmail-content-area">
                     <div class="gmail-emails">
                       <div class="gmail-email">
                         <div class="email-checkbox"></div>
-                        <div class="email-star">☆</div>
+                        <div class="email-star">★</div>
                         <div class="email-sender">GitHub</div>
                         <div class="email-content">
                           <span class="email-subject">[TabAttack] New issue: Feature request</span>
@@ -118,6 +141,46 @@
                           <span class="email-snippet">I saw something strange on your screen yesterday...</span>
                         </div>
                         <div class="email-time">Yesterday</div>
+                      </div>
+                      <div class="gmail-email">
+                        <div class="email-checkbox"></div>
+                        <div class="email-star">☆</div>
+                        <div class="email-sender">Stack Overflow</div>
+                        <div class="email-content">
+                          <span class="email-subject">New answers to: How to prank developers?</span>
+                          <span class="email-snippet">4 new answers to your question about harmless developer pranks...</span>
+                        </div>
+                        <div class="email-time">Yesterday</div>
+                      </div>
+                      <div class="gmail-email">
+                        <div class="email-checkbox"></div>
+                        <div class="email-star">☆</div>
+                        <div class="email-sender">npm Security</div>
+                        <div class="email-content">
+                          <span class="email-subject">Security Alert: Package 'tab-attack'</span>
+                          <span class="email-snippet">We detected unusual activity in your package...</span>
+                        </div>
+                        <div class="email-time">Mon</div>
+                      </div>
+                      <div class="gmail-email">
+                        <div class="email-checkbox"></div>
+                        <div class="email-star">★</div>
+                        <div class="email-sender">Coworker</div>
+                        <div class="email-content">
+                          <span class="email-subject">LOL what's happening to my tabs??</span>
+                          <span class="email-snippet">Hey, my browser is going crazy. Is this your doing? 😂...</span>
+                        </div>
+                        <div class="email-time">Mon</div>
+                      </div>
+                      <div class="gmail-email">
+                        <div class="email-checkbox"></div>
+                        <div class="email-star">☆</div>
+                        <div class="email-sender">Product Hunt</div>
+                        <div class="email-content">
+                          <span class="email-subject">TabAttack is trending on Product Hunt! 🚀</span>
+                          <span class="email-snippet">Your product is getting attention from the tech community...</span>
+                        </div>
+                        <div class="email-time">Sun</div>
                       </div>
                     </div>
                   </div>

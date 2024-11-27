@@ -243,12 +243,15 @@ h2 {
   border-bottom: 1px solid var(--chrome-border);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 }
 
 .browser-dots {
   display: flex;
   gap: 6px;
+  padding-right: 6px;
+  padding-left: 2px;
+  padding-bottom: 2px;
 }
 
 .browser-dots span {
@@ -275,22 +278,50 @@ h2 {
   align-items: center;
 }
 
-.browser-address::before {
-  content: "🔒";
+.browser-address-prefix {
   position: absolute;
   left: 12px;
-  font-size: 12px;
-  opacity: 0.5;
+  display: flex;
+  align-items: center;
+  color: #5f6368;
+  z-index: 1;
 }
 
 .browser-address input {
   width: 100%;
-  padding: 8px 12px 8px 32px;
+  padding: 8px 48px 8px 32px;
   border: 1px solid var(--chrome-border);
   border-radius: 20px;
   font-size: 14px;
   background: var(--surface);
   color: var(--text);
+}
+
+.browser-address-actions {
+  position: absolute;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.browser-star,
+.browser-menu {
+  background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 50%;
+  color: #9aa0a6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.browser-star:hover,
+.browser-menu:hover {
+  background: var(--surface-hover);
+  color: #202124;
 }
 
 .browser-tabs {
@@ -739,6 +770,10 @@ h2 {
   .email-content {
     color: #e8eaed;
   }
+
+  .browser-star:hover {
+    color: #e8eaed;
+  }
 }
 
 /* GitHub styles */
@@ -776,7 +811,7 @@ h2 {
 .github-button {
   background: #238636;
   color: white;
-  border: 1px solid rgba(240,246,252,0.1);
+  border: 1px solid rgba(240, 246, 252, 0.1);
   font-weight: 500;
 }
 
@@ -894,7 +929,7 @@ h2 {
   max-width: 850px;
   min-height: 1100px;
   padding: 60px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .gdocs-button {
@@ -914,19 +949,19 @@ h2 {
   .reddit-content {
     background: #030303;
   }
-  
+
   .reddit-header,
   .reddit-post {
     background: #1a1a1b;
     border-color: #343536;
   }
-  
+
   .reddit-search input {
     background: #272729;
     border-color: #343536;
     color: #d7dadc;
   }
-  
+
   .reddit-home,
   .reddit-popular,
   .post-title,
@@ -1043,7 +1078,8 @@ h2 {
   font-size: 12px;
 }
 
-.upvote, .downvote {
+.upvote,
+.downvote {
   cursor: pointer;
 }
 
@@ -1092,4 +1128,127 @@ h2 {
 
 .reddit-button:hover {
   background: #0061a9;
+}
+
+/* Gmail specific updates */
+.gmail-main {
+  display: flex;
+  height: 100%;
+}
+
+.gmail-sidebar {
+  min-width: 200px;
+  padding: 8px 0;
+  border-right: 1px solid #dadce0;
+  display: flex;
+  flex-direction: column;
+}
+
+.gmail-compose {
+  padding: 8px 16px;
+  margin-bottom: 8px;
+}
+
+.gmail-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.gmail-sidebar-item {
+  padding: 6px 24px;
+  color: #444;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 0 16px 16px 0;
+  margin: 0 8px 0 0;
+}
+
+.gmail-content-area {
+  flex: 1;
+  overflow-y: auto;
+  background: #ffffff;
+}
+
+.gmail-button {
+  background: #c2e7ff !important;
+  color: #001d35 !important;
+  border: none !important;
+  font-weight: 500;
+  border-radius: 16px !important;
+  padding: 8px 16px !important;
+  height: 36px !important;
+  min-width: auto !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.gmail-button:hover {
+  background: #b6deff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .gmail-sidebar {
+    border-color: #3c4043;
+  }
+
+  .gmail-button {
+    background: #8ab4f8 !important;
+    color: #202124 !important;
+  }
+
+  .gmail-button:hover {
+    background: #93bbf9 !important;
+  }
+
+  .gmail-sidebar-item {
+    color: #e8eaed;
+  }
+
+  .gmail-sidebar-item:hover {
+    background: rgba(232, 234, 237, 0.08);
+  }
+
+  .gmail-sidebar-item.active {
+    background: #1a73e8;
+    color: #e8eaed;
+  }
+
+  .gmail-content-area {
+    background: #1f1f1f;
+  }
+}
+
+.gmail-emails {
+  display: flex;
+  flex-direction: column;
+}
+
+.browser-menu {
+  background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 50%;
+  color: #5f6368;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.browser-menu:hover {
+  background: var(--surface-hover);
+  color: #202124;
+}
+
+/* Dark mode adjustment */
+@media (prefers-color-scheme: dark) {
+  .browser-menu:hover {
+    color: #e8eaed;
+  }
 }
