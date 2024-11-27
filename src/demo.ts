@@ -39,6 +39,14 @@ const titleIcons: TitleIconCategories = {
 let isAttacking = false;
 let attackInterval: number | null = null;
 
+// Add URL mapping at the top
+const tabUrls: { [key: string]: string } = {
+  "Gmail": "https://mail.google.com",
+  "GitHub": "https://github.com/jakeisnt/tabattack",
+  "Google Docs": "https://docs.google.com/document/d/1...",
+  "Reddit": "https://reddit.com/r/ProgrammerHumor"
+};
+
 function getRandomTitle(): TitleIcon {
   const categories = Object.keys(titleIcons);
   const category = categories[Math.floor(Math.random() * categories.length)];
@@ -46,26 +54,52 @@ function getRandomTitle(): TitleIcon {
   return titles[Math.floor(Math.random() * titles.length)];
 }
 
+function getRandomUrl(): string {
+  const urls = [
+    "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "https://twitch.tv/xqc",
+    "https://reddit.com/r/ProgrammerHumor/comments/...",
+    "https://twitter.com/elonmusk/status/...",
+    "https://stackoverflow.com/questions/...",
+  ];
+  return urls[Math.floor(Math.random() * urls.length)];
+}
+
 function attackTabs(): void {
   const tabs = document.querySelectorAll<HTMLElement>(".tab:not(.active)");
+  const addressInput = document.querySelector<HTMLInputElement>(".browser-address input");
+
   tabs.forEach((tab) => {
     const newTitle = getRandomTitle();
     tab.textContent = newTitle.title;
+    
+    // Update data-url attribute with a random URL
+    const newUrl = getRandomUrl();
+    tab.setAttribute("data-url", newUrl);
+
+    // If this tab becomes active, update the address bar
+    if (tab.classList.contains("active") && addressInput) {
+      addressInput.value = newUrl;
+    }
   });
 }
 
 function restoreTab(tab: HTMLElement): void {
   const originalTitle = tab.dataset.original;
+  const originalUrl = tabUrls[originalTitle || ""];
+  
   if (originalTitle) {
     tab.textContent = originalTitle;
+    tab.setAttribute("data-url", originalUrl);
   }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.getElementById("toggleAttack");
   const tabs = document.querySelectorAll<HTMLElement>(".tab");
+  const addressInput = document.querySelector<HTMLInputElement>(".browser-address input");
 
-  if (!toggleBtn) return;
+  if (!toggleBtn || !addressInput) return;
 
   toggleBtn.addEventListener("click", () => {
     isAttacking = !isAttacking;
@@ -98,6 +132,12 @@ document.addEventListener("DOMContentLoaded", () => {
       // Add active class to clicked tab
       tab.classList.add("active");
       restoreTab(tab);
+
+      // Update address bar using data-url attribute
+      const url = tab.getAttribute("data-url");
+      if (url && addressInput) {
+        addressInput.value = url;
+      }
     });
   });
 });
