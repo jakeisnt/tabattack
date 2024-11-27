@@ -179,5 +179,4 @@ class BrowserSimulation {
 document.addEventListener("DOMContentLoaded", () => {
     new BrowserSimulation();
 });
-console.log("browser-sim.ts loaded");
 export { TABS };

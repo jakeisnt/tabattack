@@ -381,19 +381,19 @@ h2 {
 }
 
 .tab[data-original="Gmail"]::before {
-  background-image: url('favicons/gmail.ico') !important;
+  background-image: url("favicons/gmail.ico") !important;
 }
 
 .tab[data-original="GitHub"]::before {
-  background-image: url('favicons/github.ico') !important;
+  background-image: url("favicons/github.ico") !important;
 }
 
 .tab[data-original="Google Docs"]::before {
-  background-image: url('favicons/gdocs.ico') !important;
+  background-image: url("favicons/gdocs.png") !important;
 }
 
 .tab[data-original="Reddit"]::before {
-  background-image: url('favicons/reddit.ico') !important;
+  background-image: url("favicons/reddit.ico") !important;
 }
 
 .tab::after {
