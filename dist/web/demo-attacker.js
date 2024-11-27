@@ -43,11 +43,15 @@ export class DemoAttacker extends TabAttacker {
             button.addEventListener("click", () => {
                 if (this.isCurrentlyAttacking()) {
                     this.stopAttack();
-                    button.textContent = "Start Attack";
+                    document.querySelectorAll('[id^="toggleAttack-"]').forEach(btn => {
+                        btn.textContent = "Start Attack";
+                    });
                 }
                 else {
                     this.startAttack();
-                    button.textContent = "Stop Attack";
+                    document.querySelectorAll('[id^="toggleAttack-"]').forEach(btn => {
+                        btn.textContent = "Stop Attack";
+                    });
                 }
             });
         });

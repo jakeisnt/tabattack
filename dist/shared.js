@@ -18,11 +18,11 @@ export const titleIcons = {
     funny: [
         {
             title: "System32 Deletion Progress",
-            icon: "favicons/windows.ico",
+            icon: "favicons/onlyfans.ico",
         },
         {
             title: "Your Boss Behind You!",
-            icon: "favicons/warning.ico",
+            icon: "favicons/gmail.ico",
         },
     ],
 };
