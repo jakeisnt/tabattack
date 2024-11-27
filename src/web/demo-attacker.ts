@@ -16,6 +16,9 @@ export class DemoAttacker extends TabAttacker {
     this.setupAttackButtons();
   }
 
+  /**
+   * Initializes the tabs with their original state
+   */
   private initializeTabs(): void {
     document.querySelectorAll<HTMLElement>(".tab").forEach((tab) => {
       const original = tab.dataset.original;
@@ -25,9 +28,21 @@ export class DemoAttacker extends TabAttacker {
       if (tabInfo) {
         this.tabs.set(tab, tabInfo);
       }
+
+      // on tab switch, restore the current tab
+      // and attack all of the others, if attacking.
+      tab.addEventListener("click", () => {
+        this.restoreTab(tab);
+        if (this.isCurrentlyAttacking()) {
+          this.attackTabs();
+        }
+      });
     });
   }
 
+  /**
+   * Sets up event listeners for attack buttons
+   */
   private setupAttackButtons(): void {
     document.querySelectorAll('[id^="toggleAttack-"]').forEach((button) => {
       button.addEventListener("click", () => {
@@ -43,6 +58,28 @@ export class DemoAttacker extends TabAttacker {
   }
 
   /**
+   * Restores a tab to its original state
+   * @param element - The tab element to restore
+   */
+  protected restoreTab(element: HTMLElement): void {
+    const originalTab = this.tabs.get(element);
+    if (originalTab) {
+      element.textContent = originalTab.title;
+      element.style.setProperty("--favicon", `url('${originalTab.icon}')`);
+    }
+  }
+
+  /**
+   * Attacks a tab with a random title and icon
+   * @param element - The tab element to attack
+   */
+  protected attackTab(element: HTMLElement): void {
+    const newTitle = this.getRandomTitleIcon();
+    element.textContent = newTitle.title;
+    element.style.setProperty("--favicon", `url('${newTitle.icon}')`);
+  }
+
+  /**
    * Attacks all inactive tabs in the demo interface
    * - Updates tab titles
    * - Updates tab URLs
@@ -50,10 +87,10 @@ export class DemoAttacker extends TabAttacker {
    */
   protected async attackTabs(): Promise<void> {
     this.tabs.forEach((originalTab, element) => {
-      if (!element.classList.contains("active")) {
-        const newTitle = this.getRandomTitleIcon();
-        element.textContent = newTitle.title;
-        element.style.setProperty("--favicon", `url('${newTitle.icon}')`);
+      if (element.classList.contains("active")) {
+        this.restoreTab(element);
+      } else {
+        this.attackTab(element);
       }
     });
   }
@@ -63,24 +100,8 @@ export class DemoAttacker extends TabAttacker {
    * Uses original titles and URLs from tabUrls mapping
    */
   protected restoreAllTabs(): void {
-    this.tabs.forEach((originalTab, element) => {
-      element.textContent = originalTab.title;
-      element.style.setProperty("--favicon", `url('${originalTab.icon}')`);
+    this.tabs.forEach((_, element) => {
+      this.restoreTab(element);
     });
-  }
-
-  /**
-   * Generates a random URL for attacked tabs
-   * @returns Random URL from predefined list
-   */
-  private getRandomUrl(): string {
-    const urls = [
-      "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      "https://twitch.tv/xqc",
-      "https://reddit.com/r/ProgrammerHumor/comments/...",
-      "https://twitter.com/elonmusk/status/...",
-      "https://stackoverflow.com/questions/...",
-    ];
-    return urls[Math.floor(Math.random() * urls.length)];
   }
 }

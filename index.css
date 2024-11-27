@@ -638,9 +638,14 @@ h2 {
 }
 
 .tab-content.active,
-.github-content {  /* Make GitHub content visible by default */
-  display: flex !important;
+.github-content {
+  /* Make GitHub content visible by default */
+  display: flex;
   flex-direction: column;
+}
+
+.tab-content.hidden {
+  display: none;
 }
 
 /* Hide other content by default */
