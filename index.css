@@ -508,7 +508,7 @@ h2 {
   .install-steps {
     flex-direction: row;
     gap: 4px;
-    justify-content: flex-start;
+    justify-content: center;
     padding: 0 10px;
   }
 
@@ -785,6 +785,7 @@ h2 {
   border-radius: 16px;
   padding: 0 24px 0 16px;
   height: 48px;
+  max-width: 200px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1501,8 +1502,6 @@ h2 {
   .gmail-toolbar {
     padding: 8px;
     gap: 12px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
   }
 
   .gmail-toolbar-section {
@@ -1554,6 +1553,7 @@ h2 {
 
   .github-main {
     padding: 12px;
+    overflow-y: hidden;
   }
 
   .github-repo-content {
@@ -1566,7 +1566,6 @@ h2 {
 
   .branch-select {
     gap: 8px;
-    margin-bottom: 12px;
     display: flex;
     align-items: center;
     flex-wrap: nowrap; /* Prevent wrapping */
