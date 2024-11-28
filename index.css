@@ -225,6 +225,11 @@ h2 {
   font-family: var(--font-system);
 }
 
+.download-button {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .cta-button:hover {
   background: var(--surface-hover);
   box-shadow: 0 1px 3px var(--shadow);
