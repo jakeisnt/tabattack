@@ -63,7 +63,6 @@ export class BrowserSimulation {
             content.classList.remove("active");
         });
         const content = document.querySelector(`.${tabInfo.className}-content`);
-        console.log(`tab to activate: ${tabInfo.title}`, content);
         if (content) {
             content.classList.remove("hidden");
             content.classList.add("active");

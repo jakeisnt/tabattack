@@ -429,6 +429,8 @@ h2 {
   position: relative;
   z-index: 1;
   overflow: auto;
+  will-change: transform;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Add mobile adjustments */
@@ -1759,4 +1761,40 @@ h2 {
   .post-votes {
     font-size: 11px;
   }
+}
+
+/* Add will-change to optimize scrolling performance */
+.browser-content {
+  will-change: transform;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* Use transform instead of top/left for animations */
+.tab::before {
+  transform: translateY(-50%);
+  will-change: transform;
+}
+
+/* Add hardware acceleration for smoother scrolling */
+.gmail-content-area,
+.github-main,
+.gdocs-content-area,
+.reddit-main {
+  -webkit-overflow-scrolling: touch;
+  will-change: transform;
+  transform: translateZ(0); /* Force GPU acceleration */
+}
+
+/* Prevent repaints during scrolling */
+.gmail-email {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Optimize fixed elements */
+.gmail-toolbar,
+.github-header,
+.gdocs-header {
+  will-change: transform;
+  transform: translateZ(0);
 }
